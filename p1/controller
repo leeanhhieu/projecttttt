@@ -1,0 +1,24 @@
+public class WatchController : Controller
+{
+    private List<Watch> watches = new List<Watch>
+    {
+        new Watch { Id = 1, Name = "đồng hồ húp lót", Brand = "hãng hồ đồng", Price = 999999 },
+        new Watch { Id = 2, Name = "đồng hồ rô bờ lốc", Brand = "hãng không bít", Price = 99999999 },
+        // thêm các sản phẩm khác vào đây
+    };
+
+    public ActionResult Index()
+    {
+        return View(watches);
+    }
+
+    public ActionResult Details(int id)
+    {
+        Watch watch = watches.FirstOrDefault(w => w.Id == id);
+        if (watch == null)
+        {
+            return HttpNotFound();
+        }
+        return View(watch);
+    }
+}
